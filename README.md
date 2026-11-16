@@ -56,7 +56,7 @@ Euler's method approximates projectile motion through discrete time steps.
 
 It is selected because it is simple to implement and makes the relationship between differential equations, numerical approximation, and accumulated error easy to investigate.
 
-The numerical results will be compared with the analytical solution.
+The numerical results are compared with the analytical solution.
 
 ### 3. Gradient Descent
 
@@ -72,7 +72,7 @@ The methods were selected for their interpretability, educational value, and sui
 
 The analytical solution provides a reference, Euler's method demonstrates numerical integration, and Gradient Descent introduces derivative-based optimization.
 
-More advanced alternatives, including higher-order numerical integration and other optimization techniques, will be discussed to explain the advantages and limitations of the selected approaches.
+More advanced alternatives, including higher-order numerical integration and other optimization techniques, are discussed as possible future extensions.
 
 The objective is not to claim that these methods are universally optimal, but to evaluate when and why they are useful.
 
@@ -89,16 +89,14 @@ The initial model assumes:
 
 Real-world trajectories are also influenced by wind, air resistance, projectile properties, and environmental conditions.
 
-These factors motivate possible future extensions. The current investigation begins with an idealized model so that numerical results can be validated against an analytical solution.
+These factors motivate possible future extensions. The investigation uses an idealized model so that numerical results can be validated against an analytical solution.
 
 ## Technologies
 
-- **Python 3.14** — programming language.
+- **Python 3** — programming language (developed using Python 3.14).
 - **JupyterLab** — interactive mathematical analysis and documentation.
 - **NumPy** — numerical calculations.
 - **Matplotlib** — trajectory and experiment visualizations.
-- **SymPy** — optional symbolic mathematical verification.
-- **pytest** — automated testing.
 - **Git and GitHub** — version control and project documentation.
 
 ## Getting Started
@@ -122,10 +120,16 @@ Activate it on Windows:
 .\.venv\Scripts\Activate.ps1
 ```
 
-Install dependencies:
+Install dependencies using the repository requirements file (if present):
 
 ```bash
 python -m pip install -r requirements.txt
+```
+
+Alternatively, install the packages needed to run the notebook directly:
+
+```bash
+python -m pip install jupyterlab numpy matplotlib ipython
 ```
 
 Launch JupyterLab:
@@ -134,21 +138,23 @@ Launch JupyterLab:
 jupyter lab
 ```
 
-Open `notebooks/artillery_math.ipynb` and run the cells in order.
+Open `notebooks/artillery_math.ipynb`, then use **Restart Kernel and Run All Cells** to reproduce the calculations, tables, and plots. No external dataset is required.
 
-## Evaluation Plan
+## Evaluation and Results
 
-The project will evaluate:
+The completed notebook evaluates the mathematical methods through controlled experiments:
 
-- **Trajectory prediction:** How launch angle and initial velocity affect projectile motion.
-- **Numerical accuracy:** How Euler's method compares with the analytical solution for different time steps.
-- **Automatic aiming:** Whether Gradient Descent can find a launch angle within a specified target tolerance.
-- **Convergence behavior:** How learning rate and initial angle affect optimization performance.
-- **Method suitability:** Why the selected methods are appropriate and where alternative approaches may perform better.
+- **Trajectory prediction:** The analytical equations establish a reference trajectory under idealized conditions.
+- **Euler method accuracy:** Time steps of 0.5, 0.2, 0.1, 0.05, and 0.01 seconds are compared against the analytical flight time and range. The range error decreases from approximately 6.868 m to 0.141 m as the step size is reduced.
+- **Automatic aiming:** Gradient Descent searches for a launch angle that reaches a target 30 m away at a fixed launch speed of 20 m/s.
+- **Learning-rate sensitivity:** Among the tested values, a learning rate of 0.0001 reaches the target tolerance in 7 recorded iterations, while 0.0005 fails to converge within the 1000-iteration limit.
+- **Initial-angle sensitivity:** Suitable starting angles converge toward either approximately 23.7° or 66.3°. Starting at exactly 45° fails because the loss gradient is zero at that point.
+
+The notebook includes numerical tables, convergence plots, discussion of the observed behavior, and limitations of both methods.
 
 ## Limitations and Future Work
 
-The initial model is idealized and does not include real-world trajectory measurements.
+The implemented model is idealized and does not include real-world trajectory measurements.
 
 Therefore, the project demonstrates mathematical and numerical behavior rather than experimentally validated physical predictions.
 
@@ -156,17 +162,12 @@ Possible extensions include wind, aerodynamic drag, varying launch heights, more
 
 ## References
 
-The notebook will include references to the mathematical and computational sources used throughout the investigation.
+The full academic bibliography and in-text citations are provided in **Section 6 — References** of the notebook. Principal sources include:
 
-Relevant documentation includes:
-
-- [Python Documentation](https://docs.python.org/3/)
-- [NumPy Documentation](https://numpy.org/doc/stable/)
-- [Matplotlib Documentation](https://matplotlib.org/stable/)
-- [SymPy Documentation](https://docs.sympy.org/latest/)
-- [Project Jupyter](https://jupyter.org/)
-
-Additional academic references will be added as the mathematical research develops.
+- [OpenStax — University Physics Volume 1: Projectile Motion](https://openstax.org/books/university-physics-volume-1/pages/4-3-projectile-motion)
+- [OpenStax — University Physics Volume 1: Newton's Second Law](https://openstax.org/books/university-physics-volume-1/pages/5-3-newtons-second-law)
+- [Chasnov — Numerical Methods: Initial Value Problem](https://math.libretexts.org/Bookshelves/Applied_Mathematics/Numerical_Methods_%28Chasnov%29/07%3A_Ordinary_Differential_Equations/7.02%3A_Numerical_Methods_-_Initial_Value_Problem)
+- [Cornell University — CS 4220: Gradient Descent](https://www.cs.cornell.edu/courses/cs4220/2026sp/lec/2026-04-08.html)
 
 ---
 
